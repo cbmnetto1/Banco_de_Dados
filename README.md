@@ -1,3 +1,6 @@
 # Banco de Dados
 Alunos:
-Celso Bezerra de Mello Netto
+Celso Netto
+Danilo Teodoro
+Gregório de Albuquerque
+Henrique Azevedo
