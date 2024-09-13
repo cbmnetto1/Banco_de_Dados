@@ -1,3 +1,3 @@
-# Banco_de_Dados
+# Banco de Dados
 Alunos:
-Celso Bezerra de Mello Netto 
+Celso Bezerra de Mello Netto
