@@ -9,7 +9,7 @@ Criar um banco de dados para uma empresa ficticia  chamada 'Saúde Som e Sabor'.
 Os colabores montaram cada caso separadamente a depois houve uma junção de todos os casos. 
 
 ## Colaboradores
-- Celso Netto:Modelo Clínica , transformação para o Modelo Relacional  e Modelo DDL.
+- Celso Netto: Modelo Clínica, transformação para o Modelo Relacional e Modelo DDL.
 - Danilo Teodoro: Junção dos Modelos.
 - Gregório de Albuquerque: Modelo de Eventos e Slide.
 - Henrique Azevedo: Modelo do Restaurante.
