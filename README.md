@@ -5,3 +5,4 @@
 - Danilo Teodoro
 - Gregório de Albuquerque
 - Henrique Azevedo
+- Bernardo
