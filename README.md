@@ -1,4 +1,6 @@
-# Banco de Dados
+# Banco de Dados Saúde Som e Sabor
+
+<img src="/assets/img/Logo.jpg">
 
 ## Alunos
 - Celso Netto
