@@ -1,0 +1,9 @@
+1 - Quais funcionários que tem o melhor desempenho, no sentido de atendimento a pedidos e participação em eventos?
+
+2 - Quais pedidos de restaurante são mais frequentes durante eventos, e qual sua margem de lucro?
+
+3 - Qual é o retorno financeiro dos shows e gincanas em termos de venda de ingressos e consumo no restaurante?
+
+4 - Quais eventos patrocinados geram mais lucro para a organização?
+
+5 - Qual é a média de receitas geradas por pacientes (convênio vs sem convênio)?
