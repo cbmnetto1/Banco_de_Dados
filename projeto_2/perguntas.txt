@@ -1,0 +1,93 @@
+1 - Quais são os ingredientes mais utilizados nos itens mais vendidos do restaurante e qual o custo associado?
+
+SELECT 
+    i.nome AS Nome_Item,
+    ingr.Nome AS Nome_Ingrediente,
+    ingr.Preco AS Preco_Ingrediente,
+    SUM(ingr.Quantidade_Ingrediente) AS Quantidade_Total_Ingrediente
+FROM 
+    Pedido p
+JOIN 
+    Item i ON p.ID_Pedido = i.fk_Pedido_ID_Pedido
+JOIN 
+    contem c ON i.ID_Item = c.fk_Item_ID_Item
+JOIN 
+    Ingrediente ingr ON c.fk_Ingrediente_ID_Ingrediente = ingr.ID_Ingrediente
+GROUP BY 
+    i.nome, ingr.Nome, ingr.Preco
+ORDER BY 
+    SUM(i.Quantidade_Item) DESC,
+    Quantidade_Total_Ingrediente DESC;
+
+2 - Qual a frequência de visitas dos pacientes por convênio, e qual o custo médio de atendimento para cada tipo de convênio?
+ 
+
+SELECT 
+    conv.nome AS Nome_Convenio,
+    COUNT(cons.ID_Consulta) AS Frequencia_Visitas,
+    AVG(itens.preco * itens.Quantidade_Item) AS Custo_Medio_Atendimento
+FROM 
+    Consulta cons
+JOIN 
+    Pessoa p ON cons.fk_Pessoa_ID_pessoa = p.ID_pessoa
+JOIN 
+    Convenio conv ON p.fk_Convenio_ID_Convenio = conv.ID_Convenio
+LEFT JOIN 
+    Pedido ped ON ped.fk_Pessoa_ID_pessoa = p.ID_pessoa
+LEFT JOIN 
+    Item itens ON itens.fk_Pedido_ID_Pedido = ped.ID_Pedido
+GROUP BY 
+    conv.nome
+ORDER BY 
+    Frequencia_Visitas DESC;
+
+
+3 - Quais mesas são mais reservadas durante eventos?
+
+SELECT 
+    m.numero AS Numero_Mesa,
+    COUNT(r.ID_Reserva) AS Total_Reservas_Eventos
+FROM 
+    Reserva r
+JOIN 
+    Mesa m ON r.ID_Mesa = m.ID_Mesa
+JOIN 
+    Participa p ON r.fk_Pessoa_ID_pessoa = p.fk_Pessoa_ID_pessoa
+JOIN 
+    Evento e ON p.fk_Evento_ID_Evento = e.ID_Evento
+GROUP BY 
+    m.numero
+ORDER BY 
+    Total_Reservas_Eventos DESC;
+
+4 - Qual é a receita gerada por cada tipo de evento (shows,palestras, gincanas,etc)?
+
+SELECT 
+    e.Local AS Tipo_Evento,
+    SUM(i.preco * i.Quantidade_Item) AS Receita_Gerada
+FROM 
+    Evento e
+JOIN 
+    Participa p ON e.ID_Evento = p.fk_Evento_ID_Evento
+JOIN 
+    Pedido ped ON p.fk_Pessoa_ID_pessoa = ped.fk_Pessoa_ID_pessoa
+JOIN 
+    Item i ON i.fk_Pedido_ID_Pedido = ped.ID_Pedido
+GROUP BY 
+    e.Local
+ORDER BY 
+    Receita_Gerada DESC;
+
+5 - Quais medicamentos são mais prescritos pelos médicos?
+
+SELECT 
+    r.Medicamento AS Nome_Medicamento,
+    COUNT(r.ID_Receita) AS Total_Prescricoes
+FROM 
+    Receita r
+GROUP BY 
+    r.Medicamento
+ORDER BY 
+    Total_Prescricoes DESC;
+
+
