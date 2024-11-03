@@ -129,9 +129,12 @@ CREATE TABLE Atende (
     fk_Pedido_ID_Pedido INT
 );
 
-CREATE TABLE Tem (
-    fk_Evento_ID_Evento INT,
-    fk_Patrocinador_ID_Patrocinador INT
+CREATE TABLE Patrocina (
+    ID_Evento INT,
+    ID_Patrocinador INT,
+    PRIMARY KEY (ID_Evento, ID_Patrocinador),
+    FOREIGN KEY (ID_Evento) REFERENCES Evento(ID_Evento),
+    FOREIGN KEY (ID_Patrocinador) REFERENCES Patrocinador(ID_Patrocinador)
 );
 
 CREATE TABLE contem (
@@ -141,7 +144,8 @@ CREATE TABLE contem (
 
 CREATE TABLE fornece (
     fk_Ingrediente_ID_Ingrediente INT,
-    fk_Fornecedor_ID_Fornecedor INT
+    fk_Fornecedor_ID_Fornecedor INT,
+    Quantidade_Fornecida INT
 );
  
 ALTER TABLE Pessoa ADD CONSTRAINT FK_Pessoa_2
@@ -217,16 +221,6 @@ ALTER TABLE Atende ADD CONSTRAINT FK_Atende_1
 ALTER TABLE Atende ADD CONSTRAINT FK_Atende_2
     FOREIGN KEY (fk_Pedido_ID_Pedido)
     REFERENCES Pedido (ID_Pedido)
-    ON DELETE RESTRICT;
- 
-ALTER TABLE Tem ADD CONSTRAINT FK_Tem_1
-    FOREIGN KEY (fk_Evento_ID_Evento)
-    REFERENCES Evento (ID_Evento)
-    ON DELETE RESTRICT;
- 
-ALTER TABLE Tem ADD CONSTRAINT FK_Tem_2
-    FOREIGN KEY (fk_Patrocinador_ID_Patrocinador)
-    REFERENCES Patrocinador (ID_Patrocinador)
     ON DELETE RESTRICT;
  
 ALTER TABLE contem ADD CONSTRAINT FK_contem_1
