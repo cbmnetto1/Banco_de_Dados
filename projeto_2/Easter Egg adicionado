@@ -1,0 +1,382 @@
+ create database modeloLogico2;
+ 
+ use modeloLogico2;
+
+CREATE TABLE Pessoa (
+    ID_pessoa INT PRIMARY KEY,
+    Nome VARCHAR(50),
+    CPF VARCHAR(11),
+    Telefone VARCHAR(9),
+    Endereco VARCHAR(80),
+    fk_Convenio_ID_Convenio INT
+);
+
+CREATE TABLE Funcionario (
+    ID_Funcionario INT,
+    Nome VARCHAR(50),
+    Cargo VARCHAR(50),
+    CPF VARCHAR(11),
+    telefone VARCHAR(9),
+    Departamento VARCHAR(50),
+    ID_medico INT,
+    CRM INT,
+    Especialidade VARCHAR(20),
+    Funcionario_TIPO INT,
+    PRIMARY KEY (ID_Funcionario, ID_medico)
+);
+
+CREATE TABLE Evento (
+    ID_Evento INT PRIMARY KEY,
+    Data DATE,
+    Local VARCHAR(80),
+    fk_Show_ID_Show INT
+);
+
+CREATE TABLE Consulta (
+    ID_Consulta INT PRIMARY KEY,
+    Data DATE,
+    Hora TIME,
+    ID_Medico INT,
+    fk_Pessoa_ID_pessoa INT,
+    fk_Funcionario_ID_Funcionario INT,
+    fk_Funcionario_ID_medico INT
+);
+
+CREATE TABLE Pedido (
+    ID_Pedido INT PRIMARY KEY,
+    Data_pedido DATE,
+    Hora_Pedido TIME,
+    ID_Mesa INT,
+    fk_Pessoa_ID_pessoa INT
+);
+
+CREATE TABLE Patrocinador (
+    ID_Patrocinador INT PRIMARY KEY,
+    nome VARCHAR(50),
+    Empresa VARCHAR(50)
+);
+
+CREATE TABLE Shows (
+    ID_Show INT PRIMARY KEY,
+    artista VARCHAR(50),
+    Horario TIME
+);
+
+CREATE TABLE Convenio (
+    ID_Convenio INT PRIMARY KEY,
+    nome VARCHAR(50),
+    CNPJ VARCHAR(14)
+);
+
+CREATE TABLE Receita (
+    ID_Receita INT PRIMARY KEY,
+    Quantidade INT,
+    Medicamento VARCHAR(50),
+    ID_medico INT,
+    fk_Funcionario_ID_Funcionario INT,
+    fk_Funcionario_ID_medico INT
+);
+
+CREATE TABLE Item (
+    ID_Item INT PRIMARY KEY,
+    nome VARCHAR(50),
+    preco DECIMAL,
+    Quantidade_Item INT,
+    fk_Pedido_ID_Pedido INT
+);
+
+CREATE TABLE Ingrediente (
+    ID_Ingrediente INT PRIMARY KEY,
+    Nome VARCHAR(50),
+    Preco DECIMAL,
+    Quantidade_Ingrediente INT
+);
+
+CREATE TABLE Fornecedor (
+    ID_Fornecedor INT PRIMARY KEY,
+    nome VARCHAR(50),
+    endereco VARCHAR(80)
+);
+
+CREATE TABLE Reserva (
+    ID_Reserva INT PRIMARY KEY,
+    Data DATE,
+    Hora TIME,
+    ID_Mesa INT,
+    ID_Cliente INT,
+    fk_Pessoa_ID_pessoa INT
+);
+
+CREATE TABLE Mesa (
+    ID_Mesa INT PRIMARY KEY,
+    numero INT,
+    Capacidade INT,
+    fk_Reserva_ID_Reserva INT
+);
+
+CREATE TABLE Participa (
+    fk_Evento_ID_Evento INT,
+    fk_Pessoa_ID_pessoa INT
+);
+
+CREATE TABLE trabalhaEm (
+    fk_Funcionario_ID_Funcionario INT,
+    fk_Funcionario_ID_medico INT,
+    fk_Evento_ID_Evento INT
+);
+
+CREATE TABLE Atende (
+    fk_Funcionario_ID_Funcionario INT,
+    fk_Funcionario_ID_medico INT,
+    fk_Pedido_ID_Pedido INT
+);
+
+CREATE TABLE Tem (
+    fk_Evento_ID_Evento INT,
+    fk_Patrocinador_ID_Patrocinador INT
+);
+
+CREATE TABLE contem (
+    fk_Item_ID_Item INT,
+    fk_Ingrediente_ID_Ingrediente INT
+);
+
+CREATE TABLE fornece (
+    fk_Ingrediente_ID_Ingrediente INT,
+    fk_Fornecedor_ID_Fornecedor INT
+);
+ 
+ALTER TABLE Pessoa ADD CONSTRAINT FK_Pessoa_2
+    FOREIGN KEY (fk_Convenio_ID_Convenio)
+    REFERENCES Convenio (ID_Convenio)
+    ON DELETE CASCADE;
+ 
+ALTER TABLE Evento ADD CONSTRAINT FK_Evento_2
+    FOREIGN KEY (fk_Show_ID_Show)
+    REFERENCES Shows (ID_Show)
+    ON DELETE RESTRICT;
+ 
+ALTER TABLE Consulta ADD CONSTRAINT FK_Consulta_2
+    FOREIGN KEY (fk_Pessoa_ID_pessoa)
+    REFERENCES Pessoa (ID_pessoa)
+    ON DELETE RESTRICT;
+ 
+ALTER TABLE Consulta ADD CONSTRAINT FK_Consulta_3
+    FOREIGN KEY (fk_Funcionario_ID_Funcionario, fk_Funcionario_ID_medico)
+    REFERENCES Funcionario (ID_Funcionario, ID_medico)
+    ON DELETE RESTRICT;
+ 
+ALTER TABLE Pedido ADD CONSTRAINT FK_Pedido_2
+    FOREIGN KEY (fk_Pessoa_ID_pessoa)
+    REFERENCES Pessoa (ID_pessoa)
+    ON DELETE RESTRICT;
+ 
+ALTER TABLE Receita ADD CONSTRAINT FK_Receita_2
+    FOREIGN KEY (fk_Funcionario_ID_Funcionario, fk_Funcionario_ID_medico)
+    REFERENCES Funcionario (ID_Funcionario, ID_medico)
+    ON DELETE RESTRICT;
+ 
+ALTER TABLE Item ADD CONSTRAINT FK_Item_2
+    FOREIGN KEY (fk_Pedido_ID_Pedido)
+    REFERENCES Pedido (ID_Pedido)
+    ON DELETE RESTRICT;
+ 
+ALTER TABLE Reserva ADD CONSTRAINT FK_Reserva_2
+    FOREIGN KEY (fk_Pessoa_ID_pessoa)
+    REFERENCES Pessoa (ID_pessoa)
+    ON DELETE RESTRICT;
+ 
+ALTER TABLE Mesa ADD CONSTRAINT FK_Mesa_2
+    FOREIGN KEY (fk_Reserva_ID_Reserva)
+    REFERENCES Reserva (ID_Reserva)
+    ON DELETE RESTRICT;
+ 
+ALTER TABLE Participa ADD CONSTRAINT FK_Participa_1
+    FOREIGN KEY (fk_Evento_ID_Evento)
+    REFERENCES Evento (ID_Evento)
+    ON DELETE RESTRICT;
+ 
+ALTER TABLE Participa ADD CONSTRAINT FK_Participa_2
+    FOREIGN KEY (fk_Pessoa_ID_pessoa)
+    REFERENCES Pessoa (ID_pessoa)
+    ON DELETE RESTRICT;
+ 
+ALTER TABLE trabalhaEm ADD CONSTRAINT FK_trabalhaEm_1
+    FOREIGN KEY (fk_Funcionario_ID_Funcionario, fk_Funcionario_ID_medico)
+    REFERENCES Funcionario (ID_Funcionario, ID_medico)
+    ON DELETE RESTRICT;
+ 
+ALTER TABLE trabalhaEm ADD CONSTRAINT FK_trabalhaEm_2
+    FOREIGN KEY (fk_Evento_ID_Evento)
+    REFERENCES Evento (ID_Evento)
+    ON DELETE RESTRICT;
+ 
+ALTER TABLE Atende ADD CONSTRAINT FK_Atende_1
+    FOREIGN KEY (fk_Funcionario_ID_Funcionario, fk_Funcionario_ID_medico)
+    REFERENCES Funcionario (ID_Funcionario, ID_medico)
+    ON DELETE RESTRICT;
+ 
+ALTER TABLE Atende ADD CONSTRAINT FK_Atende_2
+    FOREIGN KEY (fk_Pedido_ID_Pedido)
+    REFERENCES Pedido (ID_Pedido)
+    ON DELETE RESTRICT;
+ 
+ALTER TABLE Tem ADD CONSTRAINT FK_Tem_1
+    FOREIGN KEY (fk_Evento_ID_Evento)
+    REFERENCES Evento (ID_Evento)
+    ON DELETE RESTRICT;
+ 
+ALTER TABLE Tem ADD CONSTRAINT FK_Tem_2
+    FOREIGN KEY (fk_Patrocinador_ID_Patrocinador)
+    REFERENCES Patrocinador (ID_Patrocinador)
+    ON DELETE RESTRICT;
+ 
+ALTER TABLE contem ADD CONSTRAINT FK_contem_1
+    FOREIGN KEY (fk_Item_ID_Item)
+    REFERENCES Item (ID_Item)
+    ON DELETE RESTRICT;
+ 
+ALTER TABLE contem ADD CONSTRAINT FK_contem_2
+    FOREIGN KEY (fk_Ingrediente_ID_Ingrediente)
+    REFERENCES Ingrediente (ID_Ingrediente)
+    ON DELETE RESTRICT;
+ 
+ALTER TABLE fornece ADD CONSTRAINT FK_fornece_1
+    FOREIGN KEY (fk_Ingrediente_ID_Ingrediente)
+    REFERENCES Ingrediente (ID_Ingrediente)
+    ON DELETE RESTRICT;
+ 
+ALTER TABLE fornece ADD CONSTRAINT FK_fornece_2
+    FOREIGN KEY (fk_Fornecedor_ID_Fornecedor)
+    REFERENCES Fornecedor (ID_Fornecedor)
+    ON DELETE RESTRICT;
+    
+   use modeloLogico2;
+   
+INSERT INTO Convenio (ID_Convenio, nome, CNPJ)
+VALUES
+(1, 'Convênio A', '12345678000101'),
+(2, 'Convênio B', '98765432000111');
+   
+   
+INSERT INTO Pessoa (ID_pessoa, Nome, CPF, Telefone, Endereco, fk_Convenio_ID_Convenio)
+VALUES
+(1, 'João Silva', '12345678901', '999888777', 'Rua das Flores, 123', 1),
+(2, 'Maria Souza', '98765432100', '999555444', 'Avenida Central, 456', 2);
+ 
+
+
+INSERT INTO Funcionario (ID_Funcionario, Nome, Cargo, CPF, telefone, Departamento, ID_medico, CRM, Especialidade, Funcionario_TIPO)
+VALUES
+(1, 'Carlos Mendes', 'Medico', '32165498700', '999444333', 'Pediatria', 1, 123456, 'Pediatria', 1),
+(2, 'Ana Oliveira', 'Recepcionista', '65412378900', '999333222', 'Recepção', '1',' 1234', 'Dermatologia', 2);
+
+INSERT INTO Shows (ID_Show, artista, Horario)
+VALUES
+(1, 'Banda X', '20:00:00'),
+(2, 'Cantora Y', '22:00:00');
+
+
+INSERT INTO Evento (ID_Evento, Data, Local, fk_Show_ID_Show)
+VALUES
+(1, '2023-10-15', 'Estádio Municipal', 1),
+(2, '2023-11-20', 'Auditório Central', 2);
+
+
+INSERT INTO Consulta (ID_Consulta, Data, Hora, ID_Medico, fk_Pessoa_ID_pessoa, fk_Funcionario_ID_Funcionario, fk_Funcionario_ID_medico)
+VALUES
+(1, '2023-10-15', '14:00:00', 1, 1, 2, 1);
+
+
+INSERT INTO Pedido (ID_Pedido, Data_pedido, Hora_Pedido, ID_Mesa, fk_Pessoa_ID_pessoa)
+VALUES
+(1, '2023-10-12', '12:30:00', 1, 2);
+
+
+INSERT INTO Patrocinador (ID_Patrocinador, nome, Empresa)
+VALUES
+(1, 'Tech Co.', 'Tecnologia SA'),
+(2, 'Foodies', 'Alimentos Ltda');
+
+ 
+
+ 
+
+
+INSERT INTO Receita (ID_Receita, Quantidade, Medicamento, ID_medico, fk_Funcionario_ID_Funcionario, fk_Funcionario_ID_medico)
+VALUES
+(1, 2, 'Paracetamol', 1, 1, 1);
+
+
+INSERT INTO Item (ID_Item, nome, preco, Quantidade_Item, fk_Pedido_ID_Pedido)
+VALUES
+(1, 'Pizza', 30.00, 1, 1),
+(2, 'Refrigerante', 5.00, 2, 1);
+
+
+INSERT INTO Ingrediente (ID_Ingrediente, Nome, Preco, Quantidade_Ingrediente)
+VALUES
+(1, 'Tomate', 2.50, 100),
+(2, 'Queijo', 5.00, 50);
+
+
+INSERT INTO Fornecedor (ID_Fornecedor, nome, endereco)
+VALUES
+(1, 'Fornecedor A', 'Rua A, 100'),
+(2, 'Fornecedor B', 'Rua B, 200');
+
+
+INSERT INTO Reserva (ID_Reserva, Data, Hora, ID_Mesa, ID_Cliente, fk_Pessoa_ID_pessoa)
+VALUES
+(1, '2023-10-15', '19:00:00', 1, 1, 2);
+
+
+INSERT INTO Mesa (ID_Mesa, numero, Capacidade, fk_Reserva_ID_Reserva)
+VALUES
+(1, 10, 4, 1),
+(2, 20, 6, NULL);
+
+
+INSERT INTO Participa (fk_Evento_ID_Evento, fk_Pessoa_ID_pessoa)
+VALUES
+(1, 1),
+(2, 2);
+
+
+INSERT INTO trabalhaEm (fk_Funcionario_ID_Funcionario, fk_Funcionario_ID_medico, fk_Evento_ID_Evento)
+VALUES
+(1, 1, 1),
+(2, NULL, 2);
+
+
+INSERT INTO Atende (fk_Funcionario_ID_Funcionario, fk_Funcionario_ID_medico, fk_Pedido_ID_Pedido)
+VALUES
+(2, NULL, 1);
+
+
+INSERT INTO Tem (fk_Evento_ID_Evento, fk_Patrocinador_ID_Patrocinador)
+VALUES
+(1, 1),
+(2, 2);
+
+
+INSERT INTO contem (fk_Item_ID_Item, fk_Ingrediente_ID_Ingrediente)
+VALUES
+(1, 1),
+(1, 2);
+
+
+INSERT INTO fornece (fk_Ingrediente_ID_Ingrediente, fk_Fornecedor_ID_Fornecedor)
+VALUES
+(1, 1),
+(2, 2);
+
+ 
+    
+ INSERT INTO Pessoa (ID_pessoa, Nome, CPF, Telefone, Endereco, fk_Convenio_ID_Convenio)
+VALUES
+ ('3', 'Buzz Lightyear', '00000000', '12345678', 'Ao infinito e Além', 2);
+
+
+
+
