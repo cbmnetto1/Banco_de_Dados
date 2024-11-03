@@ -1,0 +1,9 @@
+1- Qual patrocinador está mais presente nos eventos?
+
+2- Quais os itens mais pedidos e os ingredientes mais requisitados?
+
+3- Quais os horários de pico para consultas e reservas?
+
+4- Quais são os convênios mais utilizados?
+
+5- Quais os fornecedores com maior volume de fornecimento e os ingredientes mais caros?
