@@ -136,11 +136,11 @@ CREATE TABLE Tem (
 
 CREATE TABLE contem (
     fk_Item_ID_Item INT,
-    fk_Ingrediente_ID_Igrediente INT
+    fk_Ingrediente_ID_Ingrediente INT
 );
 
 CREATE TABLE fornece (
-    fk_Ingrediente_ID_Igrediente INT,
+    fk_Ingrediente_ID_Ingrediente INT,
     fk_Fornecedor_ID_Fornecedor INT
 );
  
@@ -235,13 +235,13 @@ ALTER TABLE contem ADD CONSTRAINT FK_contem_1
     ON DELETE RESTRICT;
  
 ALTER TABLE contem ADD CONSTRAINT FK_contem_2
-    FOREIGN KEY (fk_Ingrediente_ID_Igrediente)
-    REFERENCES Ingrediente (ID_Igrediente)
+    FOREIGN KEY (fk_Ingrediente_ID_Ingrediente)
+    REFERENCES Ingrediente (ID_Ingrediente)
     ON DELETE RESTRICT;
  
 ALTER TABLE fornece ADD CONSTRAINT FK_fornece_1
-    FOREIGN KEY (fk_Ingrediente_ID_Igrediente)
-    REFERENCES Ingrediente (ID_Igrediente)
+    FOREIGN KEY (fk_Ingrediente_ID_Ingrediente)
+    REFERENCES Ingrediente (ID_Ingrediente)
     ON DELETE RESTRICT;
  
 ALTER TABLE fornece ADD CONSTRAINT FK_fornece_2
