@@ -1,0 +1,26 @@
+1 - Quais funcionários que tem o melhor desempenho, no sentido de participação em eventos?
+
+2 - Quais os itens e os ingredientes mais pedidos?
+
+3 - Qual a hora de pico para as consultas?
+
+4 - Qual o patrocinador mais presente nos eventos?
+
+5 - Qual o ingrediente mais caro do restaurante?
+
+
+
+
+
+
+
+
+6- Quais são os ingredientes mais utilizados nos itens mais vendidos do restaurante e qual o custo associado?
+
+7- Qual a frequência de visitas dos pacientes por convênio, e qual o custo médio de atendimento para cada tipo de convênio?
+
+8- Quais mesas são mais reservadas durante eventos?
+
+9- Qual é a receita gerada por cada tipo de evento (shows,palestras, gincanas,etc)?
+
+10- Quais medicamentos são mais prescritos pelos médicos?
