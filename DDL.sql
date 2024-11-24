@@ -215,3 +215,6 @@ ALTER TABLE Patrocina ADD CONSTRAINT FK_Patrocina_2
     FOREIGN KEY (fk_Evento_ID_Evento)
     REFERENCES Evento (ID_Evento)
     ON DELETE RESTRICT;    
+
+INSERT INTO Pessoa(ID, Nome, CPF, Telefone, Endereco, fk_Convenio_ID_Convenio) VALUES
+('3', 'Buzz Lightyear', '00000000000', '12345678', 'Ao infinito e Além', NULL);
