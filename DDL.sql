@@ -77,43 +77,43 @@ CREATE TABLE Patrocinador (
 CREATE TABLE Atende (
     fk_Funcionario_fk_Pessoa_ID INT,
     fk_Pedido_ID_Pedido INT
-    PRIMARY KEY (fk_Funcionario_ID, fk_Pedido_ID)
+    PRIMARY KEY (fk_Funcionario_fk_Pessoa_ID, fk_Pedido_ID_Pedido)
 );
 
 CREATE TABLE Contem_Item (
     fk_Pedido_ID_Pedido INT,
     fk_Item_ID_Item INT
-    PRIMARY KEY (fk_Pedido_ID, fk_Item_ID)
+    PRIMARY KEY (fk_Pedido_ID_Pedido, fk_Item_ID_Item)
 );
 
 CREATE TABLE Contem_Ingrediente (
     fk_Ingrediente_ID_Ingrediente INT,
     fk_Item_ID_Item INT
-    PRIMARY KEY (fk_Ingrediente_ID, fk_Item_ID)
+    PRIMARY KEY (fk_Ingrediente_ID_Ingrediente, fk_Item_ID_Item)
 );
 
 CREATE TABLE Fornece (
     fk_Fornece_ID_Fornecedor INT,
     fk_Ingrediente_ID_Ingrediente INT
-    PRIMARY KEY (fk_Fornecedor_ID, fk_Ingrediente_ID)
+    PRIMARY KEY (fk_Fornece_ID_Fornecedor, fk_Ingrediente_ID_Ingrediente)
 );
 
 CREATE TABLE Participa (
     fk_Evento_ID_Evento INT,
     fk_Pessoa_ID INT
-    PRIMARY KEY (fk_Evento_ID, fk_Pessoa_ID)
+    PRIMARY KEY (fk_Evento_ID_Evento, fk_Pessoa_ID)
 );
 
 CREATE TABLE Trabalha (
     fk_Evento_ID_Evento INT,
     fk_Funcionario_fk_Pessoa_ID INT
-    PRIMARY KEY (fk_Evento_ID, fk_Funcionario_ID)
+    PRIMARY KEY (fk_Evento_ID_Evento, fk_Funcionario_fk_Pessoa_ID)
 );
 
 CREATE TABLE Patrocina (
     fk_Patrocina_ID_Patrocinador INT,
     fk_Evento_ID_Evento INT
-    PRIMARY KEY (fk_Patrocinador_ID, fk_Evento_ID)
+    PRIMARY KEY (fk_Patrocina_ID_Patrocinador, fk_Evento_ID_Evento)
 );
  
 ALTER TABLE Pessoa ADD CONSTRAINT FK_Pessoa_2
