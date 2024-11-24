@@ -6,16 +6,9 @@
 
 4 - Qual o patrocinador mais presente nos eventos?
 
-5 - Qual o ingrediente mais caro do restaurante?
+5 - Qual o ingredientes mais caros do restaurante?
 
-
-
-
-
-
-
-
-6- Quais são os ingredientes mais utilizados nos itens mais vendidos do restaurante e qual o custo associado?
+6- Quais os ingredientes e seus respectivos custos totais utilizados nos itens mais vendidos do restaurante, considerando a frequência de vendas e o preço dos ingredientes associados a cada item?
 
 7- Qual a frequência de visitas dos pacientes por convênio, e qual o custo médio de atendimento para cada tipo de convênio?
 
