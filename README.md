@@ -11,7 +11,7 @@ Este projeto consiste na criação de um banco de dados para a empresa fictícia
 - **Facilitar o gerenciamento do restaurante**, incluindo cardápios, pedidos e estoque.
 - **Proporcionar um sistema organizado** para monitorar clientes, funcionários e fornecedores.
 
-##Estrutura do Banco de Dados
+## Estrutura do Banco de Dados
 O banco de dados foi projetado considerando os principais aspectos operacionais da Saúde Som e Sabor. Ele inclui as seguintes tabelas principais:
 
 Clientes: Registro de informações pessoais dos clientes, como nome, contato e histórico de participação.
