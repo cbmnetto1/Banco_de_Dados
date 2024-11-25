@@ -20,7 +20,7 @@ CREATE TABLE Medico (
 );
 
 CREATE TABLE Convenio (
-    ID_Convenio INT PRIMARY KEY,
+    ID_Convenio INT PRIMARY KEY AUTO_INCREMENT,
     Nome VARCHAR(50),
     CNPJ VARCHAR(14)
 );
@@ -49,10 +49,10 @@ CREATE TABLE Item (
 );
 
 CREATE TABLE Ingrediente (
-    ID_Ingrediente INT PRIMARY KEY,
+    ID_Ingrediente INT PRIMARY KEY AUTO_INCREMENT,
     Nome VARCHAR(20) NOT NULL,
     Preco DECIMAL(10,2),
-    Quantidade INT
+    Quantidade_Ingrediente INT
 );
 
 CREATE TABLE Fornecedor (
